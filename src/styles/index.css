@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+  /* variables */
+  --primary: #0AB88A;
+  --secondary: #2C3333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--secondary);
+  margin: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.notes {
+  margin-bottom: 100px;
+}
+
+.output-notes {
+  margin-bottom: 100px;
+}
+
+/* notes */
+
+hr {
+  width: 100%;
+}
+
+#formNotes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+#formNotes #title,
+#formNotes #note {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 24px 0;
+}
+
+#formNotes #title {
+  font-size: 32px;
+}
+
+#formNotes #note {
+  font-size: 20px;
+}
+
+.btn-submit {
+  padding: 20px 24px;
+  background-color: var(--primary);
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #fff;
+  color: var(--secondary);
+
+}
+
+/* output notes */
+.wrap-items {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  max-width: 1024px;
+}
+
+.wrap-items .item-note {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 300px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.wrap-items .item-note h2,
+p {
+  margin-bottom: 20px;
+}
+
+.wrap-btn {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.wrap-btn #btnDelete,
+.wrap-btn #btnArchive {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 20px 24px;
+  cursor: pointer;
+}
+
+.wrap-btn #btnDelete {
+  font-size: 20px;
+  color: #f53444;
+}
+
+.wrap-btn #btnDelete:hover {
+  color: #fff;
+  background-color: #f53444;
+}
+
+.wrap-btn #btnArchive {
+  font-size: 20px;
+  color: #fff;
+}
+
+.wrap-btn #btnArchive:hover {
+  color: var(--secondary);
+  background-color: #ece10f;
+}
