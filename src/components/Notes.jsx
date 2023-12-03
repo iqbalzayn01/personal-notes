@@ -6,6 +6,7 @@ export const Notes = ({ updateNotes }) => {
   const [notes, setNotes] = useState(getInitialData());
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteBody, setNewNoteBody] = useState("");
+  const RENDER_EVENT = "render_event";
 
   useEffect(() => {
     const formNotes = document.getElementById("formNotes");
@@ -15,6 +16,10 @@ export const Notes = ({ updateNotes }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    document.dispatchEvent(new Event(RENDER_EVENT));
+  }, [notes]);
 
   const addNote = () => {
     if (newNoteTitle && newNoteBody) {
@@ -28,6 +33,7 @@ export const Notes = ({ updateNotes }) => {
       setNotes((prevNotes) => [...prevNotes, newNote]);
       setNewNoteTitle("");
       setNewNoteBody("");
+      document.dispatchEvent(new Event(RENDER_EVENT));
       updateNotes((prevNotes) => [...prevNotes, newNote]);
     }
   };

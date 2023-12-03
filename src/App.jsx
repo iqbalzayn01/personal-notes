@@ -12,7 +12,11 @@ export default function App() {
   return (
     <>
       <Notes updateNotes={updateNotes} />
-      <OutputNotes notes={notes} setNotes={setNotes} />
+      <OutputNotes
+        notes={notes}
+        setNotes={setNotes}
+        updateNotes={updateNotes}
+      />
     </>
   );
 }

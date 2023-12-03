@@ -19,16 +19,17 @@ body {
 }
 
 .container {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 .notes {
   margin-bottom: 100px;
 }
 
-.output-notes {
-  margin-bottom: 100px;
+.nonactive {
+  display: none;
 }
 
 /* notes */
@@ -41,8 +42,6 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%;
-  max-width: 500px;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -84,10 +83,9 @@ hr {
 /* output notes */
 .wrap-items {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 50px;
-  max-width: 1024px;
 }
 
 .wrap-items .item-note {
@@ -107,10 +105,14 @@ p {
   margin-bottom: 20px;
 }
 
-.wrap-btn {
+.wrap-btn,
+.wrap-menu {
   display: flex;
-  gap: 20px;
   width: 100%;
+}
+
+.wrap-btn {
+  gap: 20px;
 }
 
 .wrap-btn #btnDelete,
@@ -141,4 +143,20 @@ p {
 .wrap-btn #btnArchive:hover {
   color: var(--secondary);
   background-color: #ece10f;
+}
+
+.wrap-menu {
+  gap: 50px;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #fff;
+}
+
+.wrap-menu #openNotes,
+.wrap-menu #openArchived {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
 }
