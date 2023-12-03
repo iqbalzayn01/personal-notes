@@ -76,35 +76,39 @@ export const OutputNotes = ({
         className={`container ${activeMenu === "notes" ? "" : "nonactive"}`}
       >
         <div>
-          <ul className="wrap-items">
-            {filteredNotes
-              .filter((noteItem) => !noteItem.archived)
-              .map((note) => (
-                <li key={note.id} className="item-note">
-                  <div className="wrap-note">
-                    <h2>{note.title}</h2>
-                    <p>{note.body}</p>
-                    <p>{showFormattedDate(note.createdAt)}</p>
-                  </div>
-                  <div className="wrap-btn">
-                    <button
-                      id="btnDelete"
-                      type="button"
-                      onClick={() => removeNote(note.id)}
-                    >
-                      Delete
-                    </button>
-                    <button
-                      id="btnArchive"
-                      type="button"
-                      onClick={() => archivedNote(note.id)}
-                    >
-                      Archive
-                    </button>
-                  </div>
-                </li>
-              ))}
-          </ul>
+          {filteredNotes.filter((noteItem) => !noteItem.archived).length > 0 ? (
+            <ul className="wrap-items">
+              {filteredNotes
+                .filter((noteItem) => !noteItem.archived)
+                .map((note) => (
+                  <li key={note.id} className="item-note">
+                    <div className="wrap-note">
+                      <h2>{note.title}</h2>
+                      <p>{note.body}</p>
+                      <p>{showFormattedDate(note.createdAt)}</p>
+                    </div>
+                    <div className="wrap-btn">
+                      <button
+                        id="btnDelete"
+                        type="button"
+                        onClick={() => removeNote(note.id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        id="btnArchive"
+                        type="button"
+                        onClick={() => archivedNote(note.id)}
+                      >
+                        Archive
+                      </button>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+          ) : (
+            <p>Tidak ada catatan</p>
+          )}
         </div>
       </section>
 
@@ -112,35 +116,39 @@ export const OutputNotes = ({
         className={`container ${activeMenu === "archived" ? "" : "nonactive"}`}
       >
         <div>
-          <ul className="wrap-items">
-            {filteredNotes
-              .filter((noteItem) => noteItem.archived)
-              .map((note) => (
-                <li key={note.id} className="item-note">
-                  <div className="wrap-note">
-                    <h2>{note.title}</h2>
-                    <p>{note.body}</p>
-                    <p>{showFormattedDate(note.createdAt)}</p>
-                  </div>
-                  <div className="wrap-btn">
-                    <button
-                      id="btnDelete"
-                      type="button"
-                      onClick={() => removeNote(note.id)}
-                    >
-                      Delete
-                    </button>
-                    <button
-                      id="btnArchive"
-                      type="button"
-                      onClick={() => returnNote(note.id)}
-                    >
-                      Return
-                    </button>
-                  </div>
-                </li>
-              ))}
-          </ul>
+          {filteredNotes.filter((noteItem) => noteItem.archived).length > 0 ? (
+            <ul className="wrap-items">
+              {filteredNotes
+                .filter((noteItem) => noteItem.archived)
+                .map((note) => (
+                  <li key={note.id} className="item-note">
+                    <div className="wrap-note">
+                      <h2>{note.title}</h2>
+                      <p>{note.body}</p>
+                      <p>{showFormattedDate(note.createdAt)}</p>
+                    </div>
+                    <div className="wrap-btn">
+                      <button
+                        id="btnDelete"
+                        type="button"
+                        onClick={() => removeNote(note.id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        id="btnArchive"
+                        type="button"
+                        onClick={() => returnNote(note.id)}
+                      >
+                        Return
+                      </button>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+          ) : (
+            <p>Tidak ada catatan</p>
+          )}
         </div>
       </section>
     </>

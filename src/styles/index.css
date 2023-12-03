@@ -24,7 +24,7 @@ h1 {
 
 .container {
   width: 100%;
-  max-width: 1024px;
+  max-width: 768px;
   margin: 0 auto;
 }
 
@@ -53,6 +53,11 @@ header #searchNote input {
   font-size: 20px;
   color: #fff;
   padding-bottom: 10px;
+}
+
+p {
+  color: #fff;
+  font-size: 20px;
 }
 
 /* notes */
@@ -92,14 +97,13 @@ hr {
 }
 
 .btn-submit {
-  padding: 20px 24px;
+  padding: 10px 16px;
   background-color: var(--primary);
   color: #fff;
   font-size: 20px;
   border: none;
   border-radius: 24px;
   cursor: pointer;
-  max-width: fit-content;
 }
 
 .btn-submit:hover {

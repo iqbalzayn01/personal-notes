@@ -6,6 +6,7 @@ export const Notes = ({ updateNotes, searchTerm, setSearchTerm }) => {
   const [notes, setNotes] = useState(getInitialData());
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteBody, setNewNoteBody] = useState("");
+  const [remainingCharacters, setRemainingCharacters] = useState(50);
   const RENDER_EVENT = "render_event";
 
   useEffect(() => {
@@ -42,6 +43,12 @@ export const Notes = ({ updateNotes, searchTerm, setSearchTerm }) => {
     setSearchTerm(e.target.value);
   };
 
+  const handlerTitleChange = (e) => {
+    const inputText = e.target.value;
+    setNewNoteTitle(inputText);
+    setRemainingCharacters(50 - inputText.length);
+  };
+
   return (
     <>
       <header className="container">
@@ -63,14 +70,14 @@ export const Notes = ({ updateNotes, searchTerm, setSearchTerm }) => {
             addNote();
           }}
         >
-          <p>Remaining characters: 50.</p>
+          <p>Remaining characters: {remainingCharacters}</p>
           <input
             id="title"
             type="text"
             name="title"
             placeholder="Title"
             value={newNoteTitle}
-            onChange={(e) => setNewNoteTitle(e.target.value)}
+            onChange={handlerTitleChange}
             maxLength={50}
             required
           />
@@ -79,8 +86,8 @@ export const Notes = ({ updateNotes, searchTerm, setSearchTerm }) => {
             name="note"
             id="note"
             placeholder="Add your note"
-            cols="30"
-            rows="10"
+            cols="10"
+            rows="5"
             value={newNoteBody}
             onChange={(e) => setNewNoteBody(e.target.value)}
             required
