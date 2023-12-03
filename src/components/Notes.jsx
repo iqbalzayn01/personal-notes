@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { getInitialData } from "../utils";
 
-export const Notes = ({ updateNotes }) => {
+export const Notes = ({ updateNotes, searchTerm, setSearchTerm }) => {
   const [notes, setNotes] = useState(getInitialData());
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteBody, setNewNoteBody] = useState("");
@@ -38,8 +38,23 @@ export const Notes = ({ updateNotes }) => {
     }
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <>
+      <header className="container">
+        <h1>Notes</h1>
+        <form id="searchNote">
+          <input
+            type="text"
+            value={searchTerm}
+            placeholder="Search note . . ."
+            onChange={handleSearchChange}
+          />
+        </form>
+      </header>
       <section className="container notes">
         <form
           id="formNotes"
@@ -48,15 +63,17 @@ export const Notes = ({ updateNotes }) => {
             addNote();
           }}
         >
-          <textarea
-            name="title"
+          <p>Remaining characters: 50.</p>
+          <input
             id="title"
+            type="text"
+            name="title"
             placeholder="Title"
-            cols="30"
-            rows="4"
             value={newNoteTitle}
             onChange={(e) => setNewNoteTitle(e.target.value)}
-          ></textarea>
+            maxLength={50}
+            required
+          />
           <hr />
           <textarea
             name="note"
@@ -66,6 +83,7 @@ export const Notes = ({ updateNotes }) => {
             rows="10"
             value={newNoteBody}
             onChange={(e) => setNewNoteBody(e.target.value)}
+            required
           ></textarea>
           <input
             type="submit"
@@ -81,4 +99,6 @@ export const Notes = ({ updateNotes }) => {
 
 Notes.propTypes = {
   updateNotes: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
+  setSearchTerm: PropTypes.func.isRequired,
 };

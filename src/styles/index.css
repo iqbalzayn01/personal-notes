@@ -10,12 +10,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
 body {
-  font-family: 'Lato', sans-serif;
   background-color: var(--secondary);
   margin: 20px;
+}
+
+h1 {
+  color: #fff;
 }
 
 .container {
@@ -25,11 +29,30 @@ body {
 }
 
 .notes {
-  margin-bottom: 100px;
+  margin: 50px auto 100px auto;
 }
 
 .nonactive {
   display: none;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header #searchNote {
+  border-bottom: 1px solid #fff;
+}
+
+header #searchNote input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: #fff;
+  padding-bottom: 10px;
 }
 
 /* notes */
@@ -47,6 +70,10 @@ hr {
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
 }
 
+#formNotes p {
+  color: #fff;
+}
+
 #formNotes #title,
 #formNotes #note {
   background: transparent;
@@ -61,7 +88,7 @@ hr {
 }
 
 #formNotes #note {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .btn-submit {
@@ -72,6 +99,7 @@ hr {
   border: none;
   border-radius: 24px;
   cursor: pointer;
+  max-width: fit-content;
 }
 
 .btn-submit:hover {
@@ -84,8 +112,8 @@ hr {
 .wrap-items {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .wrap-items .item-note {

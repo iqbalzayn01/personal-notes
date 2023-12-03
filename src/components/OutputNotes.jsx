@@ -2,7 +2,12 @@ import PropTypes from "prop-types";
 import { showFormattedDate } from "../utils";
 import { useState } from "react";
 
-export const OutputNotes = ({ notes, setNotes, updateNotes }) => {
+export const OutputNotes = ({
+  notes,
+  setNotes,
+  updateNotes,
+  filteredNotes,
+}) => {
   const [activeMenu, setActiveMenu] = useState("notes");
 
   const toggleMenu = (menu) => {
@@ -72,7 +77,7 @@ export const OutputNotes = ({ notes, setNotes, updateNotes }) => {
       >
         <div>
           <ul className="wrap-items">
-            {notes
+            {filteredNotes
               .filter((noteItem) => !noteItem.archived)
               .map((note) => (
                 <li key={note.id} className="item-note">
@@ -108,7 +113,7 @@ export const OutputNotes = ({ notes, setNotes, updateNotes }) => {
       >
         <div>
           <ul className="wrap-items">
-            {notes
+            {filteredNotes
               .filter((noteItem) => noteItem.archived)
               .map((note) => (
                 <li key={note.id} className="item-note">
@@ -144,6 +149,7 @@ export const OutputNotes = ({ notes, setNotes, updateNotes }) => {
 
 OutputNotes.propTypes = {
   notes: PropTypes.array.isRequired,
+  filteredNotes: PropTypes.array.isRequired,
   setNotes: PropTypes.func.isRequired,
   updateNotes: PropTypes.func.isRequired,
 };
