@@ -107,7 +107,7 @@ export const OutputNotes = ({
                 ))}
             </ul>
           ) : (
-            <p>Tidak ada catatan</p>
+            <p>There are no notes.</p>
           )}
         </div>
       </section>
@@ -147,7 +147,7 @@ export const OutputNotes = ({
                 ))}
             </ul>
           ) : (
-            <p>Tidak ada catatan</p>
+            <p>There are no notes.</p>
           )}
         </div>
       </section>
