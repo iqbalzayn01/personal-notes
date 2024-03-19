@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../../components/Header";
-import CButton from "../../components/CButton";
 import NotesList from "./notesList";
 
 export default function Notes({
@@ -33,15 +32,26 @@ export default function Notes({
           toggleArchive={toggleArchive}
           showFormattedDate={showFormattedDate}
         />
-        <CButton
+        <button
           type="button"
           onClick={() => {
             navigate("/form-input");
           }}
-          className="fixed right-6 bottom-6 w-[60px] h-[60px] text-4xl bg-white rounded-full px-1 cursor-pointer"
+          className="fixed right-6 bottom-6  text-4xl bg-white rounded-full p-3 cursor-pointer"
         >
-          +
-        </CButton>
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M45.8334 54.1666H20.8334V45.8333H45.8334V20.8333H54.1667V45.8333H79.1667V54.1666H54.1667V79.1666H45.8334V54.1666Z"
+              fill="black"
+            />
+          </svg>
+        </button>
       </section>
     </>
   );
