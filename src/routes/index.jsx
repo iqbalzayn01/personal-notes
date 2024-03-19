@@ -44,7 +44,7 @@ export const AppRoutes = () => {
         }
       />
       <Route
-        path="/note/:id"
+        path="/notes/:id"
         element={
           <NoteDetail
             notes={notes}

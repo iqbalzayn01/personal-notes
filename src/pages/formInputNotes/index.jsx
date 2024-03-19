@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import CButton from "../../components/CButton";
+
 export default function FormInputNotes({ addNote }) {
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const newNoteBodyRef = useRef(null);
@@ -29,7 +31,7 @@ export default function FormInputNotes({ addNote }) {
   };
 
   return (
-    <section className="container-base p-5">
+    <section className="container-base max-w-[900px] p-5">
       <form
         onSubmit={handleSubmit}
         className="flex h-screen flex-col justify-center gap-5"
@@ -52,16 +54,16 @@ export default function FormInputNotes({ addNote }) {
         <div
           ref={newNoteBodyRef}
           id="note"
-          className="bg-transparent min-h-[150px] font-semibold text-xl text-white border border-white outline-none p-2 rounded-xl"
+          className="bg-transparent h-auto font-semibold text-xl text-white border border-white outline-none p-5 rounded-xl"
           contentEditable
           data-placeholder="Add your note . . ."
         />
-        <input
+        <CButton
           type="submit"
-          value="Submit"
-          name="Submit"
-          className="bg-transparent hover:bg-white text-white hover:text-black border border-white rounded-lg px-6 py-5 cursor-pointer"
-        />
+          className="fixed right-6 bottom-6 w-[60px] h-[60px] text-4xl bg-white rounded-full p-1 cursor-pointer"
+        >
+          ✓
+        </CButton>
         <Link to="/" className="text-white hover:underline">
           {`< Back to Notes`}
         </Link>

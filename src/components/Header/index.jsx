@@ -10,12 +10,17 @@ export default function Header({ onChange }) {
 
   return (
     <header className="container-base px-5 py-10">
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between">
         <h1 className="font-bold text-2xl text-white">
           Personal <br /> Notes
         </h1>
-        <SearchBar placeholder="Search notes..." updateSearch={updateSearch} />
-        <Navbar />
+        <div className="grid md:grid-cols-2 gap-2 md:gap-1">
+          <Navbar />
+          <SearchBar
+            placeholder="Search notes..."
+            updateSearch={updateSearch}
+          />
+        </div>
       </div>
     </header>
   );

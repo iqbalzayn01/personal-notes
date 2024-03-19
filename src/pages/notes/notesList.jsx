@@ -8,7 +8,7 @@ const NotesList = ({ notes, removeNote, toggleArchive, showFormattedDate }) => {
         notes.map((note) => (
           <li key={note.id} className="note-item gap-5">
             <article className="flex flex-col gap-2">
-              <Link to={`/note/${note.id}`}>
+              <Link to={`/notes/${note.id}`}>
                 <h2 className="font-bold text-2xl hover:underline">
                   {note.title}
                 </h2>

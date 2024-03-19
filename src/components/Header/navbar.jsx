@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <ul className="flex justify-end gap-10">
+    <ul className="flex items-center gap-10">
       <li>
         <Link to="/" className="text-white hover:underline">
           Notes

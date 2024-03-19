@@ -1,8 +1,9 @@
 const addNote = (notes, setNotes, newNote) => {
+  const generateId = Math.floor(Date.now() / 1000);
   const updatedNotes = [
     ...notes,
     {
-      id: notes.length + 1,
+      id: generateId,
       createdAt: new Date().toISOString(),
       archived: false,
       ...newNote,

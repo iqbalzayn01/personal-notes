@@ -26,7 +26,7 @@ export default function Notes({
   return (
     <>
       <Header onChange={updateSearch} />
-      <section className="container-base px-5">
+      <section className="container-base px-5 py-5">
         <NotesList
           notes={filteredNotes.filter((note) => !note.archived)}
           removeNote={removeNote}
@@ -38,7 +38,7 @@ export default function Notes({
           onClick={() => {
             navigate("/form-input");
           }}
-          className="fixed right-6 bottom-6 w-[80px] h-[80px] text-4xl bg-white rounded-full px-6 py-5 cursor-pointer"
+          className="fixed right-6 bottom-6 w-[60px] h-[60px] text-4xl bg-white rounded-full px-1 cursor-pointer"
         >
           +
         </CButton>
