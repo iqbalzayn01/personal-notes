@@ -25,7 +25,7 @@ export default function FormRegister({
         type="text"
         value={valueName}
         className="w-full text-input"
-        classNameLabel="text-white"
+        classNameLabel="text-csecondary dark:text-white"
         placeholder="Name"
         onChange={onChange}
       />
@@ -36,7 +36,7 @@ export default function FormRegister({
         type="email"
         value={valueEmail}
         className="w-full text-input"
-        classNameLabel="text-white"
+        classNameLabel="text-csecondary dark:text-white"
         placeholder="Email address"
         onChange={onChange}
       />
@@ -47,7 +47,7 @@ export default function FormRegister({
         type="password"
         value={valuePassword}
         className="w-full text-input"
-        classNameLabel="text-white"
+        classNameLabel="text-csecondary dark:text-white"
         placeholder="Password"
         onChange={onChange}
       />
@@ -58,7 +58,7 @@ export default function FormRegister({
         type="password"
         value={valueConfirmPassword}
         className="w-full text-input"
-        classNameLabel="text-white"
+        classNameLabel="text-csecondary dark:text-white"
         placeholder="Confirm Password"
         onChange={onChange}
       />
@@ -70,7 +70,7 @@ export default function FormRegister({
       >
         Register
       </CButton>
-      <p className="text-white">
+      <p className="text-csecondary dark:text-white">
         Already have an account?
         <Link to="/login" className="underline">
           Login here

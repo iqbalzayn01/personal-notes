@@ -5,7 +5,7 @@ import { showFormattedDate } from "../../utils";
 
 const NotesList = ({ notes, isLoading }) => {
   if (isLoading) {
-    return <div className="text-white">Loading...</div>;
+    return <div className="text-csecondary dark:text-white">Loading...</div>;
   }
 
   return (
@@ -15,15 +15,15 @@ const NotesList = ({ notes, isLoading }) => {
           <li key={note.id} className="note-item gap-5">
             <article className="flex flex-col gap-2">
               <Link to={`/notes/${note.id}`}>
-                <h2 className="font-bold text-2xl hover:underline">
+                <h2 className="font-bold text-2xl text-csecondary dark:text-white hover:underline">
                   {note.title}
                 </h2>
               </Link>
-              <p className="text-gray-400 pb-5">
+              <p className="text-gray-500 dark:text-gray-400 pb-5">
                 {showFormattedDate(note.createdAt)}
               </p>
               <p
-                className="overflow-hidden text-ellipsis"
+                className="overflow-hidden text-ellipsis text-csecondary dark:text-white"
                 style={{
                   WebkitLineClamp: 4,
                   WebkitBoxOrient: "vertical",
@@ -36,7 +36,7 @@ const NotesList = ({ notes, isLoading }) => {
           </li>
         ))
       ) : (
-        <li className="text-white">No notes found.</li>
+        <li className="text-csecondary dark:text-white">No notes found.</li>
       )}
     </ul>
   );

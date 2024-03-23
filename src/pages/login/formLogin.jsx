@@ -23,7 +23,7 @@ export default function FormLogin({
         type="email"
         value={valueEmail}
         className="w-full text-input"
-        classNameLabel="text-white"
+        classNameLabel="text-csecondary dark:text-white"
         placeholder="Email address"
         onChange={onChange}
       />
@@ -34,7 +34,7 @@ export default function FormLogin({
         type="password"
         value={valuePassword}
         className="w-full text-input"
-        classNameLabel="text-white"
+        classNameLabel="text-csecondary dark:text-white"
         placeholder="Password"
         onChange={onChange}
       />
@@ -46,7 +46,7 @@ export default function FormLogin({
       >
         Sign In
       </CButton>
-      <p className="text-white">
+      <p className="text-csecondary dark:text-white">
         Don&quot;t have an account?
         <Link to="/register" className="underline">
           Register here

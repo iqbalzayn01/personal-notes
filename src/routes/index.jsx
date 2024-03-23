@@ -8,25 +8,28 @@ import Archived from "../pages/archive";
 import FormInputNotes from "../pages/formInputNotes";
 import NoteDetail from "../pages/noteDetail";
 import PrivateRoute from "./PrivateRoute";
+import { ThemeProvider } from "../components/ThemeContext/ThemeProvider";
 
 export const AppRoutes = () => {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/*" element={<PrivateRoute element={<Notes />} />} />
-      <Route
-        path="/form-input/*"
-        element={<PrivateRoute element={<FormInputNotes />} />}
-      />
-      <Route
-        path="/archived/*"
-        element={<PrivateRoute element={<Archived />} />}
-      />
-      <Route
-        path="/notes/:id"
-        element={<PrivateRoute element={<NoteDetail />} />}
-      />
-    </Routes>
+    <ThemeProvider>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/*" element={<PrivateRoute element={<Notes />} />} />
+        <Route
+          path="/form-input/*"
+          element={<PrivateRoute element={<FormInputNotes />} />}
+        />
+        <Route
+          path="/archived/*"
+          element={<PrivateRoute element={<Archived />} />}
+        />
+        <Route
+          path="/notes/:id"
+          element={<PrivateRoute element={<NoteDetail />} />}
+        />
+      </Routes>
+    </ThemeProvider>
   );
 };

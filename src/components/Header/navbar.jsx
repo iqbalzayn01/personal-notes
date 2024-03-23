@@ -27,19 +27,28 @@ export default function Navbar() {
   };
 
   return (
-    <ul className="flex items-center gap-10">
+    <ul className="flex flex-wrap items-center gap-10">
       <li>
-        <Link to="/" className="text-white hover:underline">
+        <Link
+          to="/"
+          className="text-csecondary dark:text-white hover:underline"
+        >
           Notes
         </Link>
       </li>
       <li>
-        <Link to="/archived" className="text-white hover:underline">
+        <Link
+          to="/archived"
+          className="text-csecondary dark:text-white hover:underline"
+        >
           Archived
         </Link>
       </li>
       <li>
-        <button onClick={handleLogout} className="text-white hover:underline">
+        <button
+          onClick={handleLogout}
+          className="text-csecondary dark:text-white hover:underline"
+        >
           {`${user.name} Logout >`}
         </button>
       </li>

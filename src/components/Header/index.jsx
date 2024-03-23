@@ -12,7 +12,7 @@ export default function Header({ onChange }) {
     <header className="container-base px-5 py-10">
       <div className="flex w-full flex-col gap-5">
         <div className="flex items-start justify-between">
-          <h1 className="font-bold text-2xl text-white">
+          <h1 className="font-bold text-2xl text-csecondary dark:text-white">
             Personal <br /> Notes
           </h1>
           <Navbar />

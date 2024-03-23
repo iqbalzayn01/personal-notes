@@ -1,4 +1,4 @@
-const BASE_URL = "BASE_URL";
+const BASE_URL = "https://api";
 
 function getAccessToken() {
   return localStorage.getItem("accessToken");

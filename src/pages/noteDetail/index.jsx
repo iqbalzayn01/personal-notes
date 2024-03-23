@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import parser from "html-react-parser";
 
-import HandleDeleteNote from "./handleDeleteNote";
-import HandleArchiveNote from "./handleArchiveNote";
-import HandleUnarchiveNote from "./handleUnarchiveNote";
 import {
   getNote,
   archiveNote,
@@ -12,11 +9,17 @@ import {
   deleteNote,
 } from "../../utils/fetch";
 import { showFormattedDate } from "../../utils";
+import { useTheme } from "../../components/ThemeContext";
+import ThemeToggle from "../../components/ThemeToggle";
+import HandleDeleteNote from "./handleDeleteNote";
+import HandleArchiveNote from "./handleArchiveNote";
+import HandleUnarchiveNote from "./handleUnarchiveNote";
 
 const NoteDetail = () => {
   const { id } = useParams();
   const [note, setNote] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { theme } = useTheme();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -80,56 +83,69 @@ const NoteDetail = () => {
   };
 
   return (
-    <section className="container-base max-w-[900px] p-5">
-      {isLoading ? (
-        <div className="text-white">Loading...</div>
-      ) : (
-        <>
-          {note ? (
-            <>
-              <div className="flex flex-col justify-center gap-5">
-                <h2 className="text-4xl text-white">{note.title}</h2>
-                <p className="text-gray-400">
-                  {showFormattedDate(note.createdAt)}
-                </p>
-                <div className="flex flex-col gap-2 text-white">
-                  {parser(parseNoteBody(note.body))}
+    <section className={`${theme === "dark" ? "light" : "dark"}`}>
+      <div className="container-base max-w-[900px] p-5">
+        {isLoading ? (
+          <div className="text-csecondary dark:text-white">Loading...</div>
+        ) : (
+          <>
+            {note ? (
+              <>
+                <div className="flex flex-col justify-center gap-5">
+                  <h2 className="text-4xl text-csecondary dark:text-white">
+                    {note.title}
+                  </h2>
+                  <p className="text-gray-500 dark:text-gray-400">
+                    {showFormattedDate(note.createdAt)}
+                  </p>
+                  <div className="flex flex-col gap-2 text-csecondary dark:text-white">
+                    {parser(parseNoteBody(note.body))}
+                  </div>
+                  {note.archived === false && (
+                    <Link
+                      to="/"
+                      className="text-csecondary dark:text-white hover:underline"
+                    >
+                      {`< Back to Notes`}
+                    </Link>
+                  )}
+                  {note.archived === true && (
+                    <Link
+                      to="/archived"
+                      className="text-csecondary dark:text-white hover:underline"
+                    >
+                      {`< Back to Notes`}
+                    </Link>
+                  )}
                 </div>
-                {note.archived === false && (
-                  <Link to="/" className="text-white hover:underline">
-                    {`< Back to Notes`}
-                  </Link>
-                )}
-                {note.archived === true && (
-                  <Link to="/archived" className="text-white hover:underline">
-                    {`< Back to Notes`}
-                  </Link>
-                )}
-              </div>
-              <div className="fixed right-6 bottom-6 flex items-center gap-5">
-                <HandleDeleteNote
-                  handleDeleteNote={handleDeleteNote}
-                  isLoading={isLoading}
-                />
-                {note.archived === false && (
-                  <HandleArchiveNote
-                    handleArchiveNote={handleArchiveNote}
-                    isLoading={isLoading}
-                  />
-                )}
-                {note.archived === true && (
-                  <HandleUnarchiveNote
-                    handleUnarchiveNote={handleUnarchiveNote}
-                    isLoading={isLoading}
-                  />
-                )}
-              </div>
-            </>
-          ) : (
-            <div className="text-white">No note found.</div>
-          )}
-        </>
-      )}
+                <div className="fixed right-6 bottom-6 flex flex-col items-end gap-5">
+                  <ThemeToggle className="px-3 py-2 rounded-full bg-csecondary dark:bg-white text-white dark:text-csecondary" />
+                  <div className="flex items-center gap-5">
+                    <HandleDeleteNote
+                      handleDeleteNote={handleDeleteNote}
+                      isLoading={isLoading}
+                    />
+                    {note.archived === false && (
+                      <HandleArchiveNote
+                        handleArchiveNote={handleArchiveNote}
+                        isLoading={isLoading}
+                      />
+                    )}
+                    {note.archived === true && (
+                      <HandleUnarchiveNote
+                        handleUnarchiveNote={handleUnarchiveNote}
+                        isLoading={isLoading}
+                      />
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="text-white">No note found.</div>
+            )}
+          </>
+        )}
+      </div>
     </section>
   );
 };

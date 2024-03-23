@@ -18,13 +18,13 @@ const SearchBar = ({ placeholder, updateSearch }) => {
   };
 
   return (
-    <form className="border-b">
+    <form className="border-b border-neutral-600 dark:border-neutral-300">
       <input
         type="text"
         value={searchTerm}
         placeholder={placeholder}
         onChange={handleChange}
-        className="w-full bg-transparent text-white border-0 outline-none pb-2"
+        className="w-full bg-transparent text-csecondary dark:text-white border-0 outline-none pb-2"
       />
     </form>
   );
