@@ -26,6 +26,10 @@
   .note-item {
     @apply min-w-[300px] flex flex-1 flex-col justify-between text-white border border-white p-5 rounded-xl
   }
+
+  .text-input {
+    @apply appearance-none rounded-lg px-5 py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500
+  }
 }
 
 form div:empty::before {

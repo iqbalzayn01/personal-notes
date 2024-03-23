@@ -1,22 +1,35 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { getActiveNotes } from "../../utils/fetch";
 import Header from "../../components/Header";
 import NotesList from "./notesList";
 
-export default function Notes({
-  notes,
-  removeNote,
-  toggleArchive,
-  showFormattedDate,
-}) {
+export default function Notes() {
+  const [notes, setNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const updateSearch = (term) => {
     setSearchTerm(term);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getActiveNotes();
+        const dataNotes = res.data;
+        setNotes(dataNotes);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Get Active Notes Error:", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const filteredNotes = notes.filter((note) =>
     note.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -26,11 +39,10 @@ export default function Notes({
     <>
       <Header onChange={updateSearch} />
       <section className="container-base px-5 py-5">
+        <h1 className="font-semibold text-white text-4xl pb-10">Notes</h1>
         <NotesList
+          isLoading={isLoading}
           notes={filteredNotes.filter((note) => !note.archived)}
-          removeNote={removeNote}
-          toggleArchive={toggleArchive}
-          showFormattedDate={showFormattedDate}
         />
         <button
           type="button"
@@ -56,10 +68,3 @@ export default function Notes({
     </>
   );
 }
-
-Notes.propTypes = {
-  notes: PropTypes.array.isRequired,
-  removeNote: PropTypes.func.isRequired,
-  toggleArchive: PropTypes.func.isRequired,
-  showFormattedDate: PropTypes.func.isRequired,
-};

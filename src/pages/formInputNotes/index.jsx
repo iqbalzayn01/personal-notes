@@ -1,32 +1,36 @@
 import { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import CButton from "../../components/CButton";
+import { addNote } from "../../utils/fetch";
 
-export default function FormInputNotes({ addNote }) {
-  const [newNoteTitle, setNewNoteTitle] = useState("");
+export default function FormInputNotes() {
+  const [formData, setFormData] = useState({
+    title: "",
+    body: "",
+  });
   const newNoteBodyRef = useRef(null);
   const [remainingCharacters, setRemainingCharacters] = useState(50);
   const navigate = useNavigate();
 
   const handleTitleChange = (e) => {
-    const inputText = e.target.value;
-    setNewNoteTitle(inputText);
-    setRemainingCharacters(50 - inputText.length);
+    const { value } = e.target;
+    setFormData({ ...formData, title: value });
+    setRemainingCharacters(50 - formData.title.length);
   };
 
-  const handleSubmit = (e) => {
+  const handleBodyChange = () => {
+    const newNoteBody = newNoteBodyRef.current.innerText;
+    setFormData({ ...formData, body: newNoteBody });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newNoteTitle && newNoteBodyRef.current) {
-      const newNoteBody = newNoteBodyRef.current.innerText;
-      addNote({
-        title: newNoteTitle,
-        body: newNoteBody,
-      });
-      setNewNoteTitle("");
-      newNoteBodyRef.current.innerText = "";
+    try {
+      await addNote(formData);
       navigate("/");
+    } catch (error) {
+      console.error("FORM_INPUT_NOTES_ERROR:", error);
     }
   };
 
@@ -44,7 +48,7 @@ export default function FormInputNotes({ addNote }) {
           type="text"
           name="title"
           placeholder="Title"
-          value={newNoteTitle}
+          value={formData.title}
           onChange={handleTitleChange}
           maxLength={50}
           className="bg-transparent font-semibold text-4xl text-white outline-none"
@@ -57,6 +61,7 @@ export default function FormInputNotes({ addNote }) {
           className="bg-transparent h-auto font-semibold text-xl text-white border border-white outline-none p-5 rounded-xl"
           contentEditable
           data-placeholder="Add your note . . ."
+          onInput={handleBodyChange}
         />
         <CButton
           type="submit"
@@ -71,7 +76,3 @@ export default function FormInputNotes({ addNote }) {
     </section>
   );
 }
-
-FormInputNotes.propTypes = {
-  addNote: PropTypes.func.isRequired,
-};

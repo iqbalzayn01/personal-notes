@@ -1,58 +1,31 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import Login from "../pages/login";
+import Register from "../pages/register";
 import Notes from "../pages/notes";
 import Archived from "../pages/archive";
 import FormInputNotes from "../pages/formInputNotes";
 import NoteDetail from "../pages/noteDetail";
-import { getInitialData, showFormattedDate } from "../utils";
-import { addNote, removeNote, toggleArchive } from "../services/notesFunction";
+import PrivateRoute from "./PrivateRoute";
 
 export const AppRoutes = () => {
-  const [notes, setNotes] = useState(getInitialData());
-
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/*" element={<PrivateRoute element={<Notes />} />} />
       <Route
-        path="/*"
-        element={
-          <Notes
-            notes={notes}
-            removeNote={(noteId) => removeNote(notes, setNotes, noteId)}
-            toggleArchive={(noteId) => toggleArchive(notes, setNotes, noteId)}
-            showFormattedDate={showFormattedDate}
-          />
-        }
+        path="/form-input/*"
+        element={<PrivateRoute element={<FormInputNotes />} />}
       />
       <Route
-        path="/form-input"
-        element={
-          <FormInputNotes
-            addNote={(newNote) => addNote(notes, setNotes, newNote)}
-          />
-        }
-      />
-      <Route
-        path="/archived"
-        element={
-          <Archived
-            notes={notes}
-            removeNote={(noteId) => removeNote(notes, setNotes, noteId)}
-            toggleArchive={(noteId) => toggleArchive(notes, setNotes, noteId)}
-            showFormattedDate={showFormattedDate}
-          />
-        }
+        path="/archived/*"
+        element={<PrivateRoute element={<Archived />} />}
       />
       <Route
         path="/notes/:id"
-        element={
-          <NoteDetail
-            notes={notes}
-            removeNote={(noteId) => removeNote(notes, setNotes, noteId)}
-            toggleArchive={(noteId) => toggleArchive(notes, setNotes, noteId)}
-            showFormattedDate={showFormattedDate}
-          />
-        }
+        element={<PrivateRoute element={<NoteDetail />} />}
       />
     </Routes>
   );

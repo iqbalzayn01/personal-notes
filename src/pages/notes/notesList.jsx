@@ -1,7 +1,13 @@
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const NotesList = ({ notes, removeNote, toggleArchive, showFormattedDate }) => {
+import { showFormattedDate } from "../../utils";
+
+const NotesList = ({ notes, isLoading }) => {
+  if (isLoading) {
+    return <div className="text-white">Loading...</div>;
+  }
+
   return (
     <ul className="notes-list">
       {notes.length > 0 ? (
@@ -27,20 +33,6 @@ const NotesList = ({ notes, removeNote, toggleArchive, showFormattedDate }) => {
                 {note.body}
               </p>
             </article>
-            <div className="flex gap-5">
-              <button
-                onClick={() => removeNote(note.id)}
-                className="w-full bg-transparent hover:bg-red-400 border border-white rounded-lg px-6 py-5 cursor-pointer"
-              >
-                Delete
-              </button>
-              <button
-                onClick={() => toggleArchive(note.id)}
-                className="w-full bg-transparent hover:bg-yellow-400 border border-white rounded-lg px-6 py-5 cursor-pointer"
-              >
-                {note.archived ? "Restore" : "Archive"}
-              </button>
-            </div>
           </li>
         ))
       ) : (
@@ -51,10 +43,8 @@ const NotesList = ({ notes, removeNote, toggleArchive, showFormattedDate }) => {
 };
 
 NotesList.propTypes = {
-  notes: PropTypes.array.isRequired,
-  removeNote: PropTypes.func.isRequired,
-  toggleArchive: PropTypes.func.isRequired,
-  showFormattedDate: PropTypes.func.isRequired,
+  notes: PropTypes.array,
+  isLoading: PropTypes.bool,
 };
 
 export default NotesList;

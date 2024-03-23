@@ -24,7 +24,7 @@ const SearchBar = ({ placeholder, updateSearch }) => {
         value={searchTerm}
         placeholder={placeholder}
         onChange={handleChange}
-        className="bg-transparent text-white border-0 outline-none pb-2"
+        className="w-full bg-transparent text-white border-0 outline-none pb-2"
       />
     </form>
   );
