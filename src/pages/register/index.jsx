@@ -32,16 +32,15 @@ export default function Register() {
 
     setIsLoading(true);
     try {
-      const res = await register({
+      await register({
         name: formData.name,
         email: formData.email,
         password: formData.password,
       });
-      console.log("USER_REGISTER:", res.data);
       setIsLoading(false);
       navigate("/login");
     } catch (error) {
-      console.error("Error register:", error);
+      console.error("REGISTER_ERROR:", error);
       setIsLoading(false);
     }
   };
@@ -52,14 +51,8 @@ export default function Register() {
         Notes App
       </h1>
       <h3 className="text-2xl text-white text-center">Register</h3>
-      {/* {alert.status && (
-        <SAlert
-          className="bg-red-100 text-red-600 px-5 py-2 rounded-lg"
-          message={alert.message}
-        />
-      )} */}
       {passwordMatchError && (
-        <p style={{ color: "red" }}>
+        <p className="text-center text-red-400">
           Passwords do not match. Please try again.
         </p>
       )}
