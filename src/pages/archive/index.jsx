@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { getArchivedNotes } from "../../utils/fetch";
+import { useTheme } from "../../components/ThemeContext";
 import ThemeToggle from "../../components/ThemeToggle";
 import Header from "../../components/Header";
 import NotesList from "../notes/notesList";
@@ -9,6 +10,7 @@ export default function Archived() {
   const [notes, setNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const { theme } = useTheme();
 
   const updateSearch = (term) => {
     setSearchTerm(term);
@@ -37,7 +39,7 @@ export default function Archived() {
   );
 
   return (
-    <>
+    <main className={`${theme === "dark" ? "light" : "dark"}`}>
       <Header onChange={updateSearch} />
       <section className="container-base px-5">
         <h1 className="font-semibold text-csecondary dark:text-white text-4xl pb-10">
@@ -46,6 +48,6 @@ export default function Archived() {
         <NotesList notes={filteredArchivedNotes} isLoading={isLoading} />
         <ThemeToggle className="fixed right-6 bottom-6 px-3 py-2 rounded-full bg-csecondary dark:bg-white text-white dark:text-csecondary" />
       </section>
-    </>
+    </main>
   );
 }

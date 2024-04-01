@@ -1,4 +1,6 @@
-const BASE_URL = "https://api";
+import { config } from "../config";
+
+const BASE_URL = config.base_url;
 
 function getAccessToken() {
   return localStorage.getItem("accessToken");
